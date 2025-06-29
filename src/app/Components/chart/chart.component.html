@@ -1,0 +1,77 @@
+<div class="navbar-conatiner" *ngIf="loaderService.isLoading$ == false">
+  <p>Welcome back, Olivia</p>
+  <div>
+    <button class="search-btn">
+      <img src="assets/magnifying-glass.png" />
+    </button>
+    <button><img src="assets/customise.png" /> <span>Customise</span></button>
+    <button><img src="assets/download.png" /> <span>Export</span></button>
+  </div>
+</div>
+<div class="chart-container" *ngIf="loaderService.isLoading$ == false">
+  <div class="bar-chart">
+    <div class="header">
+      <img class="header-icon" src="assets/cube.png" alt="Cube" />
+      <div>
+        <p class="heading">
+          <b>Vendor breakdown</b> <br />
+          Keep track of vendors and their ratings.
+        </p>
+      </div>
+      <img
+        class="verticle-dot"
+        src="assets/three-dots-vertical.svg"
+        alt="Cube"
+      />
+    </div>
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [yaxis]="chartOptions.yaxis"
+      [plotOptions]="chartOptions.plotOptions"
+      [colors]="chartOptions.colors"
+      [dataLabels]="chartOptions.dataLabels"
+    ></apx-chart>
+    <div class="footer">
+      <button>View full report</button>
+    </div>
+  </div>
+  <div class="radial-chart">
+    <div class="header">
+      <div>
+        <p class="heading">
+          <b>Vendors monitored</b> <br />
+          your using 80% of available spots.
+        </p>
+      </div>
+      <img
+        class="verticle-dot"
+        src="assets/three-dots-vertical.svg"
+        alt="Cube"
+      />
+    </div>
+
+    <apx-chart
+      [series]="radialBar.series"
+      [chart]="radialBar.chart"
+      [labels]="radialBar.labels"
+      [colors]="radialBar.colors"
+      [fill]="radialBar.fill"
+      [stroke]="radialBar.stroke"
+      [plotOptions]="radialBar.plotOptions"
+    >
+    </apx-chart>
+
+    <p class="heading">
+      <b>You've almost reached your limit</b> <br />
+      You have used 80% of your available spots.<br />
+      Upgrade plan to monitor more vendors.
+    </p>
+    <div class="footer">
+      <button>
+        <img src="assets/recharge.png" /> <span>Upgrade plan</span>
+      </button>
+    </div>
+  </div>
+</div>

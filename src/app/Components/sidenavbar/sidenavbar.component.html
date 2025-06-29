@@ -1,0 +1,13 @@
+<div class="sidebar" *ngIf="loaderService.isLoading$ == false">
+  <ul>
+    <li *ngFor="let nav of navbarImageList">
+      <img [src]="nav" />
+    </li>
+    <li>
+      <div class="profile-wrapper">
+        <img class="profile-pic" src="assets/profile1.png" />
+        <img class="profile-icon" src="assets/cube.png" />
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,129 @@
+@import "../../../styles.scss";
+.navbar-conatiner {
+  @extend .base-section;
+  padding: 20px 0px;
+  div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    float: right;
+    margin-left: auto;
+  }
+  p {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0px;
+    padding: 0px 10px;
+    text-align: left;
+  }
+
+  button {
+    float: right;
+    display: flex;
+    &.search-btn {
+      border: none;
+    }
+    img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+    span {
+      margin: auto;
+    }
+  }
+}
+.chart-container {
+  @extend .base-section;
+
+  img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .bar-chart {
+    @extend .base-chart;
+    .header {
+      @extend .base-header;
+      div {
+        width: 91%;
+      }
+      .header-icon {
+        margin: auto 5px;
+        border-radius: 50px;
+        background: pink;
+      }
+      .heading {
+        @extend .base-heading;
+        b {
+          @extend .base-b;
+        }
+      }
+      .verticle-dot {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .footer {
+      @extend .base-footer;
+      button {
+        float: right;
+        height: 35px;
+      }
+    }
+  }
+  .radial-chart {
+    @extend .base-chart;
+    p.heading {
+      @extend .base-heading;
+      margin: 10px;
+      b {
+        @extend .base-b;
+      }
+    }
+    .header {
+      @extend .base-header;
+      div {
+        width: 85%;
+      }
+
+      .heading {
+        @extend .base-heading;
+        b {
+          @extend .base-b;
+        }
+      }
+      .verticle-dot {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .footer {
+      @extend .base-footer;
+
+      button {
+        float: right;
+        display: flex;
+        img {
+          width: 35px;
+          height: 35px;
+        }
+        span {
+          margin: auto;
+        }
+      }
+    }
+  }
+
+  ::ng-deep {
+    .apexcharts-legend.apx-legend-position-bottom.apexcharts-align-center,
+    .apexcharts-legend.apx-legend-position-top.apexcharts-align-center {
+      display: none !important;
+    }
+
+    .apexcharts-datalabel-label {
+      display: none;
+    }
+  }
+}

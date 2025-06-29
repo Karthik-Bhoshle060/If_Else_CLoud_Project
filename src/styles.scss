@@ -1,1 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+/* Added global styles to this file */
+.base-heading {
+  text-align: left;
+  color: grey;
+  margin: auto;
+}
+.base-section {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+}
+.base-b {
+  font-size: 18px;
+  color: black;
+}
+.base-header {
+  display: flex;
+  padding: 10px;
+  border-bottom: 2px solid #f8f5fe;
+  gap: 20px;
+}
+.base-footer {
+  padding: 10px;
+  border-top: 2px solid #f8f5fe;
+}
+.base-chart {
+  display: flex;
+  border: 2px solid #f8f5fe;
+  border-radius: 10px;
+  flex-direction: column;
+}
+button {
+  cursor: pointer;
+  padding: 5px;
+  border: 2px solid #f8f5fe;
+  background: white;
+  border-radius: 4px;
+}
+
+.base-grid-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  border: 2px solid #f8f5fe;
+}
+.base-check-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  margin: auto 10px auto 0px;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}

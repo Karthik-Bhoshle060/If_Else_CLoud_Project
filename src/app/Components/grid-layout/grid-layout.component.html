@@ -1,0 +1,149 @@
+<div class="grid-section" *ngIf="loaderService.isLoading$ == false">
+  <div class="header">
+    <p class="header-title">Team members</p>
+    <p class="member-count">{{ apiData.grid_data.length }} users</p>
+    <!-- <p class="member-count">50 users</p> -->
+
+    <img class="verticle-dot" src="assets/three-dots-vertical.svg" alt="Cube" />
+  </div>
+  <table class="grid-data">
+    <thead class="table-header">
+      <tr>
+        <ng-container *ngFor="let header of apiData.grid_columns">
+          <th [ngClass]="header.column_key">
+            <div>
+              <input
+                class="check-box select-all-checkbox"
+                *ngIf="header.column_key == 'name'"
+                type="checkbox"
+                name="isAllMemberSelected"
+                [(ngModel)]="isAllMemberSelected"
+                (change)="toggleSelectAll(isAllMemberSelected)"
+              />
+              <span> {{ header.column_name }}</span>
+              <img
+                *ngIf="header.column_key == 'status'"
+                src="assets/arrow-down.png"
+              />
+              <img
+                *ngIf="header.column_key == 'role'"
+                src="assets/info-icon.png"
+              />
+            </div>
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr *ngFor="let data of apiData.grid_data; let i = index">
+        <!-- <ng-container > -->
+        <td class="name">
+          <div>
+            <input
+              class="check-box select-all-checkbox"
+              type="checkbox"
+              name="isAllMemberSelected"
+              [(ngModel)]="data.selected"
+              (change)="onRowCheckboxChange(data, i)"
+            />
+            <div class="image-container">
+              <img [src]="data.profilePic" />
+              <p>
+                <b>{{ data.name.first_name + " " + data.name.last_name }}</b
+                ><br />
+                {{ data.name.handle }}
+              </p>
+            </div>
+          </div>
+        </td>
+
+        <td class="status">
+          <div [ngClass]="data.status">
+            <div class="dot" [ngClass]="'dot-' + data.status"></div>
+            <span>
+              {{ data.status }}
+            </span>
+          </div>
+        </td>
+        <td class="role">
+          <span>{{ data.role }}</span>
+        </td>
+        <td class="license_used">
+          <div class="progress-container">
+            <div
+              class="progress-bar"
+              [ngClass]="'progress-' + data.license_used"
+            ></div>
+
+            <p>{{ data.license_used }}%</p>
+          </div>
+        </td>
+        <td class="teams">
+          <div class="team-action-container">
+            <div class="teams-container">
+              <div *ngFor="let team of data.teams" [ngClass]="team.value">
+                <span>{{ team.value }}</span>
+              </div>
+            </div>
+            <div class="action-container">
+              <img
+                src="assets/delete.png"
+                (click)="deleteOREditRecord(data, 'Delete')"
+              />
+              <img
+                src="assets/edit.png"
+                (click)="deleteOREditRecord(data, 'Edit')"
+              />
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <button class="left-btn">
+      <img src="assets/left-arrow.png" /> <span>Previous</span>
+    </button>
+    <div class="page-numbers">
+      <ng-container *ngFor="let i of [].constructor(3); let index = index">
+        <div class="page-number" [ngClass]="{ active: index == 0 }">
+          <span> {{ index + 1 }}</span>
+        </div>
+      </ng-container>
+      <div class="page-number">
+        <img src="assets/verticle-dots.png" />
+      </div>
+      <ng-container *ngFor="let i of [].constructor(3); let index = index">
+        <div class="page-number">
+          <span>{{ index + 8 }}</span>
+        </div>
+      </ng-container>
+    </div>
+    <button class="right-btn">
+      <span>Next</span><img src="assets/right-arrow.png" />
+    </button>
+  </div>
+</div>
+<div class="popup-overlay" *ngIf="isVisible">
+  <div class="popup-container">
+    <div class="popup-header">
+      <h3>{{ isEditOrDelete + " Action" }}</h3>
+    </div>
+
+    <div class="popup-body">
+      <h3>
+        {{
+          selectedRecord.name.first_name + " " + selectedRecord.name.last_name
+        }}
+      </h3>
+    </div>
+
+    <div class="popup-actions">
+      <button (click)="deleteRecord()" *ngIf="isEditOrDelete == 'Delete'">
+        Delete
+      </button>
+      <button (click)="close()">Cancel</button>
+    </div>
+  </div>
+</div>
